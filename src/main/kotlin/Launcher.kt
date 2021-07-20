@@ -4,6 +4,7 @@ import modules.command.concretes.BasicCommandModule
 import net.mamoe.mirai.BotFactory
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
+import net.mamoe.mirai.event.events.MessageEvent
 import net.mamoe.mirai.message.data.PlainText
 
 suspend fun main(args : Array<String>){
@@ -12,7 +13,7 @@ suspend fun main(args : Array<String>){
 
     val modules = listOf<CommandBase>(BasicCommandModule())
 
-    GlobalEventChannel.subscribeAlways<GroupMessageEvent> {
+    GlobalEventChannel.subscribeAlways<MessageEvent> {
         if (it.message.any{ x -> x is PlainText }){
             for (text in it.message.filterIsInstance<PlainText>()) {
                 for (module in modules) {
