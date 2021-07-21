@@ -17,5 +17,5 @@ dependencies {
     runtimeOnly("net.mamoe", "mirai-core", miraiVersion) // 运行时使用
 
     implementation ("org.jsoup:jsoup:1.14.1")
-    implementation ("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
+    implementation ("com.google.code.gson:gson:2.8.7")
 }
