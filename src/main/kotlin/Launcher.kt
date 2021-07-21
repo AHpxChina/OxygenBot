@@ -1,9 +1,6 @@
 import data.command.CommandExecuteType
 import modules.command.CommandBase
-import modules.command.concretes.BasicCommandModule
-import modules.command.concretes.CovidReporterModule
-import modules.command.concretes.GithubThumbnailModule
-import modules.command.concretes.PoemModule
+import modules.command.concretes.*
 import net.mamoe.mirai.BotFactory
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -20,7 +17,8 @@ suspend fun main(args : Array<String>){
     val modules = listOf<CommandBase>(BasicCommandModule(),
         GithubThumbnailModule(),
         PoemModule(),
-        CovidReporterModule())
+        CovidReporterModule(),
+        BullshitGenerator())
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {

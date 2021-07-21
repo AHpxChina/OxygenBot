@@ -20,7 +20,7 @@ class CovidReporterModule : CommandBase {
     override suspend fun execute(raw: String, subject: Contact) {
         var rawString = raw;
         for (executor in executors) {
-            rawString = raw.substringAfter(executor)
+            rawString = rawString.substringAfter(executor)
         }
 
         rawString = rawString.trim()
