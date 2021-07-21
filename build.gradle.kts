@@ -18,4 +18,5 @@ dependencies {
 
     implementation ("org.jsoup:jsoup:1.14.1")
     implementation ("com.google.code.gson:gson:2.8.7")
+    implementation ("org.reflections:reflections:0.9.12")
 }

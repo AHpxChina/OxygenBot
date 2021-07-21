@@ -1,22 +1,21 @@
 import data.command.CommandExecuteType
+import javassist.tools.reflect.Reflection
 import modules.command.CommandBase
 import modules.command.concretes.*
 import net.mamoe.mirai.BotFactory
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.MessageEvent
 import net.mamoe.mirai.utils.MiraiExperimentalApi
+import org.reflections.Reflections
 
 @MiraiExperimentalApi
 suspend fun main(args : Array<String>){
     val bot = BotFactory.newBot(args[0].toLong(), args[1])
     bot.login()
 
-    val modules = listOf<CommandBase>(BasicCommandModule(),
-        GithubThumbnailModule(),
-        PoemModule(),
-        CovidReporterModule(),
-        BullshitGeneratorModule(),
-        SovietJokeModule())
+    val ref = Reflections("modules.command.concretes")
+
+    val modules = ref.getSubTypesOf(CommandBase::class.java).map { it.newInstance() }.toList()
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {
