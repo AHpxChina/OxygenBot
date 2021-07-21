@@ -10,6 +10,7 @@ import modules.command.CommandBase
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.contact.Contact.Companion.sendImage
 import org.jsoup.Jsoup
+import utils.getHttpInputStream
 import java.io.InputStream
 
 class GithubThumbnailModule : CommandBase {
@@ -34,10 +35,7 @@ class GithubThumbnailModule : CommandBase {
             val node = doc.select("""meta[property="og:image"]""")[0]
             val content = node.attributes().first { it.key == "content" }.value
 
-            val client = HttpClient()
-            val response = client.get<HttpResponse>(content)
-
-            val image = response.receive<InputStream>()
+            val image = getHttpInputStream(content)
             subject.sendImage(image)
 
             image.close()
