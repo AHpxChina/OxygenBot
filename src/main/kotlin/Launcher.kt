@@ -1,6 +1,7 @@
 import data.command.CommandExecuteType
 import modules.command.CommandBase
 import modules.command.concretes.BasicCommandModule
+import modules.command.concretes.CovidReporterModule
 import modules.command.concretes.GithubThumbnailModule
 import modules.command.concretes.PoemModule
 import net.mamoe.mirai.BotFactory
@@ -16,7 +17,10 @@ suspend fun main(args : Array<String>){
     val bot = BotFactory.newBot(args[0].toLong(), args[1])
     bot.login()
 
-    val modules = listOf<CommandBase>(BasicCommandModule(), GithubThumbnailModule(), PoemModule())
+    val modules = listOf<CommandBase>(BasicCommandModule(),
+        GithubThumbnailModule(),
+        PoemModule(),
+        CovidReporterModule())
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {
