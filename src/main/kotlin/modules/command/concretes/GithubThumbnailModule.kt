@@ -9,17 +9,13 @@ import kotlinx.coroutines.withContext
 import modules.command.CommandBase
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.contact.Contact.Companion.sendImage
-import net.mamoe.mirai.message.data.Image
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.internal.wait
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Attribute
 import java.io.InputStream
 
 class GithubThumbnailModule : CommandBase {
     override suspend fun execute(raw: String, subject: Contact) {
         try {
-            var url = raw;
+            var url = raw
             if (raw.contains("<?xml")){
 
                 url = Jsoup.parse(raw)
@@ -32,7 +28,9 @@ class GithubThumbnailModule : CommandBase {
                 url = "https://$url"
             }
 
-            val doc = Jsoup.connect(url).get()
+            val doc = withContext(Dispatchers.IO){
+                Jsoup.connect(url).get()
+            }
             val node = doc.select("""meta[property="og:image"]""")[0]
             val content = node.attributes().first { it.key == "content" }.value
 
