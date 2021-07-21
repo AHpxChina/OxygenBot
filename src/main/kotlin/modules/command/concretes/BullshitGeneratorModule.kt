@@ -3,7 +3,6 @@ package modules.command.concretes
 import modules.command.CommandBase
 import net.mamoe.mirai.contact.Contact
 import utils.fetchJsonArrayAsString
-import kotlin.random.Random
 
 
 /*
@@ -31,7 +30,7 @@ import kotlin.random.Random
     权性的保证。在任何情况下，无论是在合同诉讼、侵权诉讼或其他诉讼中，版权持有人均不承担因本软件或
     本软件的使用或其他交易而产生、引起或与之相关的任何索赔、损害或其他责任。
 */
-class BullshitGenerator : CommandBase {
+class BullshitGeneratorModule : CommandBase {
     //$prefix$
     //$suffix$
     //$subject$
@@ -51,7 +50,7 @@ class BullshitGenerator : CommandBase {
         get() = field.shuffled()
 
     init {
-        val data = BullshitGenerator::class.java.getResource("/BullshitData.json")?.readText()!!
+        val data = BullshitGeneratorModule::class.java.getResource("/BullshitData.json")?.readText()!!
         prefixes = data.fetchJsonArrayAsString("before")
         suffixes = data.fetchJsonArrayAsString("after")
         famous = data.fetchJsonArrayAsString("famous")

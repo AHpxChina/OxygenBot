@@ -3,10 +3,7 @@ import modules.command.CommandBase
 import modules.command.concretes.*
 import net.mamoe.mirai.BotFactory
 import net.mamoe.mirai.event.GlobalEventChannel
-import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.event.events.MessageEvent
-import net.mamoe.mirai.message.data.PlainText
-import net.mamoe.mirai.message.data.SimpleServiceMessage
 import net.mamoe.mirai.utils.MiraiExperimentalApi
 
 @MiraiExperimentalApi
@@ -18,7 +15,8 @@ suspend fun main(args : Array<String>){
         GithubThumbnailModule(),
         PoemModule(),
         CovidReporterModule(),
-        BullshitGenerator())
+        BullshitGeneratorModule(),
+        SovietJokeModule())
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {
