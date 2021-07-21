@@ -106,14 +106,3 @@ class BullshitGenerator : CommandBase {
     override val executors: Sequence<String>
         get() = sequenceOf("/shit", "/generate shit", "/作文", "来点文豪力作")
 }
-
-suspend fun main(){
-    val g = BullshitGenerator()
-
-    val commander = "/shit"
-
-    val cl = commander.substringAfter("/shit").trim().split(" ").toList()
-
-    println(cl[0].isEmpty())
-    println(cl[0].isNotBlank())
-}
