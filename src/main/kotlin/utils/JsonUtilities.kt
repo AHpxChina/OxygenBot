@@ -7,7 +7,7 @@ import com.google.gson.JsonObject
 
 fun String.fetchJsonArrayAsString(key : String) : List<String>{
     try {
-        var json = Gson().fromJson(this, JsonObject::class.java).get(key)
+        val json = Gson().fromJson(this, JsonObject::class.java).get(key)
         val re = mutableListOf<String>()
 
         if (json is JsonArray){
@@ -21,4 +21,9 @@ fun String.fetchJsonArrayAsString(key : String) : List<String>{
     }
 
     return listOf()
+}
+
+fun Any.toJsonString(): String {
+    val gson = Gson()
+    return gson.toJson(this)
 }
