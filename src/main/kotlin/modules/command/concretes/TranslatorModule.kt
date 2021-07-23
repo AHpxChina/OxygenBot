@@ -62,16 +62,3 @@ class TranslatorModule : CommandBase {
         }
     }
 }
-
-fun main(args: Array<String>) {
-    val t1 = "This is a test".split(" ")
-    val t2 = "This is a test".split(" ")
-
-    println(t1)
-    println(t2)
-    val t3 = t1.joinToString(" ").replace(t2.joinToString(" "), "").trim()
-    println(t3)
-
-    println(t3.isNotEmpty())
-    println(t3.isNotBlank())
-}
