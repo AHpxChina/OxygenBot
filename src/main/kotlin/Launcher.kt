@@ -7,6 +7,10 @@ import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.MessageEvent
 import net.mamoe.mirai.utils.MiraiExperimentalApi
 import org.reflections.Reflections
+import utils.getAzurePath
+import utils.writeAzureTranslationKey
+import java.io.File
+import java.nio.file.Files
 
 @MiraiExperimentalApi
 suspend fun main(args : Array<String>){
@@ -16,6 +20,10 @@ suspend fun main(args : Array<String>){
     val ref = Reflections("modules.command.concretes")
 
     val modules = ref.getSubTypesOf(CommandBase::class.java).map { it.newInstance() }.toList()
+
+    if (!Files.exists(getAzurePath())){
+        writeAzureTranslationKey(args[2])
+    }
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {
