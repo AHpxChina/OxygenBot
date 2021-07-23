@@ -13,9 +13,6 @@ class BasicCommandModule : CommandBase {
                 "若要详细的说明，请使用/menu来查看")
     }
 
-    override val executorType: CommandExecuteType
-        get() = CommandExecuteType.Equals
-
     override val executors: Sequence<String>
         get() = sequenceOf("/help", "/帮助", "/idk", "/about", "OxygenBot", "oxygenbot")
 }

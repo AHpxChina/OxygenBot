@@ -22,7 +22,4 @@ class PoemModule : CommandBase {
 
     override val executors: Sequence<String>
         get() = sequenceOf("/poem", "/gimme a poem", "/give me a poem", "吟诗一句")
-
-    override val executorType: CommandExecuteType
-        get() = CommandExecuteType.Equals
 }

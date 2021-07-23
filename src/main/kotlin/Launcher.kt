@@ -5,6 +5,7 @@ import modules.command.concretes.*
 import net.mamoe.mirai.BotFactory
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.MessageEvent
+import net.mamoe.mirai.message.data.content
 import net.mamoe.mirai.utils.MiraiExperimentalApi
 import org.reflections.Reflections
 import utils.getAzurePath
@@ -30,7 +31,7 @@ suspend fun main(args : Array<String>){
             for (module in modules) {
                 val predicate = when (module.executorType) {
                     CommandExecuteType.Contains -> {s:String -> text.contentToString().lowercase().contains(s)}
-                    CommandExecuteType.Equals -> {s: String -> text.contentToString() == s}
+                    CommandExecuteType.Equals -> {s: String -> text.content.split(" ").any{ s1 -> s1 == s}}
                 }
 
                 if (module.executors.any(predicate)){

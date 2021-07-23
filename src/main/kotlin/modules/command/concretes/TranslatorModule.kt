@@ -25,6 +25,8 @@ class TranslatorModule : CommandBase {
         val result = sendRequest(getRequestUrl(target), text).toJsonArray()
             .first().asJsonObject.get("translations").asJsonArray
             .first().asJsonObject.get("text").asString
+            .trimEnd('"')
+            .trimStart('"')
 
         subject.sendMessage(result)
     }

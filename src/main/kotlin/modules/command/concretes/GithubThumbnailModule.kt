@@ -1,5 +1,6 @@
 package modules.command.concretes
 
+import data.command.CommandExecuteType
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -44,6 +45,9 @@ class GithubThumbnailModule : CommandBase {
             e.printStackTrace()
         }
     }
+
+    override val executorType: CommandExecuteType
+        get() = CommandExecuteType.Contains
 
     override val executors: Sequence<String>
         get() = sequenceOf("github.com", "awd")

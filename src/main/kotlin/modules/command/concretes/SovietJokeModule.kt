@@ -16,9 +16,6 @@ class SovietJokeModule : CommandBase {
         subject.sendMessage(array.toList().random().asString)
     }
 
-    override val executorType: CommandExecuteType
-        get() = CommandExecuteType.Equals
-
     override val executors: Sequence<String>
         get() = sequenceOf("/sovietjoke", "/SovietJoke", "来点苏联笑话", "苏联笑话")
 }

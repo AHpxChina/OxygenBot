@@ -7,7 +7,7 @@ interface CommandBase{
     suspend fun execute(raw: String, subject: Contact)
 
     val executorType : CommandExecuteType
-        get() = CommandExecuteType.Contains
+        get() = CommandExecuteType.Equals
 
     val executors : Sequence<String>
 }
