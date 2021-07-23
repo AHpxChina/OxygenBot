@@ -14,8 +14,8 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     val miraiVersion = "2.6.7"
-    api("net.mamoe", "mirai-core-api", miraiVersion)
-    runtimeOnly("net.mamoe", "mirai-core", miraiVersion)
+    implementation("net.mamoe", "mirai-core-api", miraiVersion)
+    implementation("net.mamoe", "mirai-core", miraiVersion)
 
     implementation ("org.jsoup:jsoup:1.14.1")
     implementation ("com.google.code.gson:gson:2.8.7")

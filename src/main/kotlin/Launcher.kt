@@ -20,11 +20,11 @@ suspend fun main(args : Array<String>){
 
     val ref = Reflections("modules.command.concretes")
 
-    val modules = ref.getSubTypesOf(CommandBase::class.java).map { it.newInstance() }.toList()
-
     if (!Files.exists(getAzurePath())){
         writeAzureTranslationKey(args[2])
     }
+
+    val modules = ref.getSubTypesOf(CommandBase::class.java).map { it.newInstance() }.toList()
 
     GlobalEventChannel.subscribeAlways<MessageEvent> {
         for (text in it.message) {
