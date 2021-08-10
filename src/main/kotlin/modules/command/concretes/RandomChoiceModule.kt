@@ -7,7 +7,14 @@ import utils.getParameters
 
 class RandomChoiceModule : CommandBase {
     override suspend fun execute(raw: String, subject: Contact) {
-        subject.sendMessage(this.getParameters(raw).random())
+        val params = this.getParameters(raw)
+        val list = mutableListOf(params)
+
+        for (i in 0..10000){
+            list.add(params)
+        }
+
+        subject.sendMessage(list.random().random())
     }
 
     override val executors: Sequence<String>
